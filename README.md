@@ -1,1 +1,1 @@
-# simple-vote-system
+# simple_vote_system
