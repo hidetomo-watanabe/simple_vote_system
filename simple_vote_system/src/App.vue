@@ -2,7 +2,7 @@
   <v-app>
     <v-container>
       <Item/>
-      <Form/>
+      <ItemForm/>
       <ChatBoard/>
     </v-container>
   </v-app>
@@ -11,14 +11,14 @@
 <script>
   import Item from './components/Item'
   import ChatBoard from './components/ChatBoard'
-  import Form from './components/Form'
+  import ItemForm from './components/ItemForm'
 
   export default {
     name: 'App',
     components: {
       Item,
       ChatBoard,
-      Form,
+      ItemForm,
     },
   }
 </script>

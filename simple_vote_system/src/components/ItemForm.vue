@@ -10,25 +10,31 @@
         right
         @click="showCreateForm"
     >
-      <v-icon>comment</v-icon>
+      <v-icon>edit</v-icon>
     </v-btn>
     <v-dialog v-model="displayForm" max-width="500px">
-      <!--コメント入力フォーム-->
+      <!--アイテム入力フォーム-->
       <v-card>
         <v-container>
-          <h2>コメント追加</h2>
+          <h2>アイテム追加</h2>
           <v-form ref="form" v-model="valid" lazy-validation>
             <v-text-field
-                v-model="inputComment"
-                :rules="commentRules"
-                label="コメント"
+                v-model="inputItemName"
+                :rules="ItemRules"
+                label="アイテム名"
+                required
+            ></v-text-field>
+            <v-text-field
+                v-model="inputItemReferee"
+                :rules="ItemRules"
+                label="投稿者"
                 required
             ></v-text-field>
             <v-btn
                 :disabled="!valid"
-                @click="addComment"
+                @click="addItem"
             >
-              投稿する
+              アイテム追加
             </v-btn>
           </v-form>
         </v-container>
@@ -45,24 +51,26 @@
     },
     data: () => ({
       // form入力データ
-      inputComment: "",
+      inputItemName: "",
+      inputItemReferee: "",
       // バリデーション
       valid: true,
-      commentRules: [
+      ItemRules: [
         v => !!v || 'コメントは必須項目です',
       ],
       // Formダイアログの表示可否
       displayForm: false,
     }),
     methods: {
-      // コメント追加
-      addComment() {
+      // アイテム追加
+      addItem() {
         const now = new Date()
         // コメントをFirestoreへ登録
-        db.collection('comments').add({
-          content: this.inputComment,
-          avatar: 'https://picsum.photos/50?image=' + (Math.floor(Math.random() * 400) + 1),
-          createdAt: now
+        db.collection('items').add({
+          name: this.inputItemName,
+          referee: this.inputItemReferee,
+          count: 0,
+          createdAt: now,
         })
         // ダイアログを閉じる
         this.hideCreateForm()

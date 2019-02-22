@@ -4,7 +4,7 @@
       <td class="item" v-for="(item, index) in items" :key="index">
         <h4>{{item.name}}</h4>
         <div class="referee">{{item.referee}}</div>
-        <img :src="require('../assets/' + item.imgPath)" :alt="item.name" :title="item.name">
+        <img :src="require('../assets/' + getImgPath(item.imgPath))" :alt="item.name" :title="item.name">
         <div class="count">
           <button v-on:click="increment(item)">
             <img src="../assets/good.png" alt="good" title="good">
@@ -33,9 +33,16 @@
       }
     },
     methods: {
-      increment (item) {
-        var obj = db.collection('items').doc(item.id)
-        obj.update({"count": item.count + 1})
+      getImgPath (imgPath) {
+        if (imgPath) {
+          return imgPath
+        } else {
+          return 'noimage.png'
+        }
+      },
+      increment (id, count) {
+        var obj = db.collection('items').doc(id)
+        obj.update({"count": count + 1})
       },
     }
   }
