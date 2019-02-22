@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <v-container>
-      <Vote/>
+      <Item/>
       <Form/>
       <ChatBoard/>
     </v-container>
@@ -9,14 +9,14 @@
 </template>
 
 <script>
-  import Vote from './components/Vote'
+  import Item from './components/Item'
   import ChatBoard from './components/ChatBoard'
   import Form from './components/Form'
 
   export default {
     name: 'App',
     components: {
-      Vote,
+      Item,
       ChatBoard,
       Form,
     },
