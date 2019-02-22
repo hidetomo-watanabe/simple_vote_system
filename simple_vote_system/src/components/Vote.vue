@@ -1,13 +1,16 @@
 <template>
   <table>
     <tr>
-      <td v-for="(vote, index) in votes" :key="index">
-        <h4>{{vote.target}}</h4>
-        <img :src="require('../assets/' + vote.imgPath)" :alt="vote.target" :title="vote.target">
-        <h3>{{vote.count}}</h3>
-        <button v-on:click="increment(vote)">
-          <img src="../assets/good.png" alt="good" title="good">
-        </button>
+      <td class="vote" v-for="(vote, index) in votes" :key="index">
+        <h4>{{vote.name}}</h4>
+        <div class="referee">{{vote.referee}}</div>
+        <img :src="require('../assets/' + vote.imgPath)" :alt="vote.name" :title="vote.name">
+        <div class="count">
+          <button v-on:click="increment(vote)">
+            <img src="../assets/good.png" alt="good" title="good">
+          </button>
+          {{vote.count}}
+        </div>
       </td>
     </tr>
   </table>
@@ -39,4 +42,14 @@
 </script>
 
 <style scoped>
+  .vote {
+    padding: 0px 40px;
+  }
+  .referee {
+    color: #808080;
+  }
+  .count {
+    text-align: center;
+    font-size: 20px;
+  }
 </style>
