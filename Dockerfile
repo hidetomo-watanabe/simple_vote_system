@@ -7,6 +7,6 @@ RUN apk update && \
     npm install -g @vue/cli && \
     npm install -g @vue/cli-init
 
-EXPOSE 9000
+EXPOSE 8080
 
 CMD ["/bin/sh"]
