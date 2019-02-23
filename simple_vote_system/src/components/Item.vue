@@ -8,7 +8,7 @@
     </tr>
     <tr>
       <td class="item" v-for="(item, index) in items" :key="index">
-        <img :src="require('../assets/' + getImgPath(item.imgPath))" :alt="item.name" :title="item.name">
+        <img :src="require('../assets/' + getFilename(item.filename))" :alt="item.name" :title="item.name">
       </td>
     </tr>
     <tr>
@@ -41,9 +41,9 @@
       }
     },
     methods: {
-      getImgPath (imgPath) {
-        if (imgPath) {
-          return imgPath
+      getFilename (filename) {
+        if (filename) {
+          return filename
         } else {
           return 'noimage.png'
         }
