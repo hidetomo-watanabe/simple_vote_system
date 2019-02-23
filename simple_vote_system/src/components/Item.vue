@@ -8,7 +8,7 @@
     </tr>
     <tr>
       <td class="item" v-for="(item, index) in items" :key="index">
-        <img :src="require('../assets/' + getFilename(item.filename))" :alt="item.name" :title="item.name">
+        <img :src="getImgPath(item.imgPath)" :alt="item.name" :title="item.name">
       </td>
     </tr>
     <tr>
@@ -41,16 +41,15 @@
       }
     },
     methods: {
-      getFilename (filename) {
-        if (filename) {
-          return filename
+      getImgPath (imgPath) {
+        if (imgPath) {
+          return imgPath
         } else {
-          return 'noimage.png'
+          return require('../assets/noimage.png')
         }
       },
       increment (id, count) {
-        var obj = db.collection('items').doc(id)
-        obj.update({"count": count + 1})
+        db.collection('items').doc(id).update({"count": count + 1})
       },
     }
   }
