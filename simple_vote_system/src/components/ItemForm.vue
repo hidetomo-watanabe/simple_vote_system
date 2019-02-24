@@ -16,7 +16,6 @@
       <!--アイテム入力フォーム-->
       <v-card>
         <v-container>
-          <h2>アイテム追加</h2>
           <v-form ref="form" v-model="valid" lazy-validation>
             <v-text-field
                 v-model="inputItemName"
@@ -37,8 +36,9 @@
               >
             </div>
             <div v-else>
-              <img :src="previewImage" />
-              <button @click="removePreviewImage">Remove Image</button>
+              <button @click="removePreviewImage">
+                <img :src="previewImage" /><br>画像削除
+              </button>
             </div>
             <br>
             <br>
