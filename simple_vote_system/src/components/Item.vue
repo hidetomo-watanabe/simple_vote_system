@@ -6,7 +6,7 @@
           <td class="item" v-for="(item, index) in items" :key="index">
             <h4>
               {{item.name}}
-              <button v-on:click="deleteItem(item.id, item.filename)">
+              <button v-on:click="deleteItem(item.id, item.name, item.filename)">
                 <img src="../assets/delete.png" alt="delete" title="delete">
               </button>
             </h4>
@@ -62,7 +62,11 @@
           return require('../assets/loading.gif');
         }
       },
-      deleteItem (id, filename) {
+      deleteItem (id, name, filename) {
+        var res = confirm(`${name}を削除しますか？`);
+        if (res !== true) {
+            return;
+        }
         storage.ref().child(`images/${filename}`).delete();
         db.collection('items').doc(id).delete();
       },
