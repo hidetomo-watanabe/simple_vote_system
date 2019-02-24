@@ -4,7 +4,12 @@
       <table>
         <tr>
           <td class="item" v-for="(item, index) in items" :key="index">
-            <h4>{{item.name}}</h4>
+            <h4>
+              {{item.name}}
+              <button v-on:click="deleteItem(item.id, item.filename)">
+                <img src="../assets/delete.png" alt="delete" title="delete">
+              </button>
+            </h4>
             <div class="referee">{{item.referee}}</div>
           </td>
         </tr>
@@ -16,7 +21,7 @@
         <tr>
           <td class="item" v-for="(item, index) in items" :key="index">
             <div class="good">
-              <button v-on:click="increment(item.id, item.count)">
+              <button v-on:click="incrementCount(item.id, item.count)">
                 <img src="../assets/good.png" alt="good" title="good">
                 <div class="count">{{item.count}}</div>
               </button>
@@ -34,6 +39,7 @@
 
 <script>
   import {db} from '../plugins/firebase';
+  import {storage} from '../plugins/firebase';
 
   export default {
     name: 'Item',
@@ -51,13 +57,17 @@
     methods: {
       getImgPath (imgPath) {
         if (imgPath) {
-          return imgPath
+          return imgPath;
         } else {
-          return require('../assets/loading.gif')
+          return require('../assets/loading.gif');
         }
       },
-      increment (id, count) {
-        db.collection('items').doc(id).update({"count": count + 1})
+      deleteItem (id, filename) {
+        storage.ref().child(`images/${filename}`).delete();
+        db.collection('items').doc(id).delete();
+      },
+      incrementCount (id, count) {
+        db.collection('items').doc(id).update({"count": count + 1});
       },
     }
   }

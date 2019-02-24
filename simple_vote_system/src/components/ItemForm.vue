@@ -103,46 +103,44 @@
       },
       // ファイルをupload
       addImage (id) {
-        const storageRef = storage.ref()
-        const imageRef = storageRef.child(`images/${this.uploadFile.name}`)
-        imageRef.put(this.uploadFile)
+        storage.ref().child(`images/${this.uploadFile.name}`).put(this.uploadFile)
           .then((snapshot) => {
             snapshot.ref.getDownloadURL().then((downloadURL) => {
               db.collection('items').doc(id).update({"imgPath": downloadURL})
             })
-          })
+          });
       },
       // アイテム追加
       addItem() {
         // アイテムデータ作成
-        const now = new Date()
-        var id = String(now.getTime())
+        const now = new Date();
+        var id = String(now.getTime());
         db.collection('items').doc(id).set({
           name: this.inputItemName,
           referee: this.inputItemReferee,
+          filename: this.uploadFile.name,
           count: 0,
           createdAt: now,
-        })
-        if (this.uploadFile) {
-          this.addImage(id)
-        }
+        });
+        // storageへの画像追加
+        this.addImage(id);
         // ダイアログを閉じる
-        this.hideCreateForm()
+        this.hideCreateForm();
       },
       // Formの初期化
       clear() {
-        this.removePreviewImage()
-        this.$refs.form.reset()
+        this.removePreviewImage();
+        this.$refs.form.reset();
       },
       // Formダイアログの表示
       showCreateForm() {
-        this.displayForm = true
+        this.displayForm = true;
       },
       //
       // Formダイアログの非表示
       hideCreateForm() {
-        this.clear()
-        this.displayForm = false
+        this.clear();
+        this.displayForm = false;
       },
     },
   }
