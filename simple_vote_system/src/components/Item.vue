@@ -1,28 +1,30 @@
 <template>
   <ul v-if="items.length">
-    <table>
-      <tr>
-        <td class="item" v-for="(item, index) in items" :key="index">
-          <h4>{{item.name}}</h4>
-          <div class="referee">{{item.referee}}</div>
-        </td>
-      </tr>
-      <tr>
-        <td class="item" v-for="(item, index) in items" :key="index">
-          <img :src="getImgPath(item.imgPath)" :alt="item.name" :title="item.name">
-        </td>
-      </tr>
-      <tr>
-        <td class="item" v-for="(item, index) in items" :key="index">
-          <div class="count">
-            <button v-on:click="increment(item.id, item.count)">
-              <img src="../assets/good.png" alt="good" title="good">
-            </button>
-            {{item.count}}
-          </div>
-        </td>
-      </tr>
-    </table>
+    <div class="items">
+      <table>
+        <tr>
+          <td class="item" v-for="(item, index) in items" :key="index">
+            <h4>{{item.name}}</h4>
+            <div class="referee">{{item.referee}}</div>
+          </td>
+        </tr>
+        <tr>
+          <td class="item" v-for="(item, index) in items" :key="index">
+            <img :src="getImgPath(item.imgPath)" :alt="item.name" :title="item.name">
+          </td>
+        </tr>
+        <tr>
+          <td class="item" v-for="(item, index) in items" :key="index">
+            <div class="count">
+              <button v-on:click="increment(item.id, item.count)">
+                <img src="../assets/good.png" alt="good" title="good">
+              </button>
+              {{item.count}}
+            </div>
+          </td>
+        </tr>
+      </table>
+    </div>
   </ul>
   <ul v-else>
     <h2>アイテムを追加してください</h2>
@@ -62,6 +64,10 @@
 </script>
 
 <style scoped>
+  .items {
+    overflow: auto;
+    white-space: nowrap;
+  }
   .item {
     padding: 0px 40px;
   }
