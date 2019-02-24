@@ -51,7 +51,7 @@
         if (imgPath) {
           return imgPath
         } else {
-          return require('../assets/noimage.png')
+          return require('../assets/loading.png')
         }
       },
       increment (id, count) {

@@ -131,6 +131,7 @@
       },
       // Formの初期化
       clear() {
+        this.removePreviewImage()
         this.$refs.form.reset()
       },
       // Formダイアログの表示
