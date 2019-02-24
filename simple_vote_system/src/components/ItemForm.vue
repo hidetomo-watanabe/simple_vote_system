@@ -44,7 +44,7 @@
             <br>
             <div class="addItemBtn">
               <v-btn
-                :disabled="!valid"
+                :disabled="!valid || !previewImage"
                 @click="addItem"
               >
                 アイテム追加
