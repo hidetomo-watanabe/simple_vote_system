@@ -15,11 +15,11 @@
         </tr>
         <tr>
           <td class="item" v-for="(item, index) in items" :key="index">
-            <div class="count">
+            <div class="good">
               <button v-on:click="increment(item.id, item.count)">
                 <img src="../assets/good.png" alt="good" title="good">
+                <div class="count">{{item.count}}</div>
               </button>
-              {{item.count}}
             </div>
           </td>
         </tr>
@@ -74,8 +74,34 @@
   .referee {
     color: #808080;
   }
-  .count {
+  .good {
     text-align: center;
+  }
+  .count {
+    position: relative;
+    display: inline-block;
+    margin: 0.3em 0 1.5em 15px;
+    padding: 0 5px;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    vertical-align: middle;
+    text-align: center;
+    color: #FFF;
     font-size: 20px;
+    font-weight: bold;
+    background: #0068b7;
+    border-radius: 50%;
+    box-sizing: border-box;
+  }
+  .count:before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: -18px;
+    margin-top: -10px;
+    border: 10px solid transparent;
+    border-right: 15px solid #0068b7;
+    z-index: 0;
   }
 </style>

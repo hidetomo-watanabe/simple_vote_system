@@ -2,7 +2,7 @@
   <div>
     <!--フォームの表示ボタン-->
     <v-btn
-        color="blue"
+        color=#0068b7
         dark
         center
         fab
