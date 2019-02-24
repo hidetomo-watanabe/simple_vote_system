@@ -102,8 +102,8 @@
         this.previewImage = '';
       },
       // ファイルをupload
-      addImage (id) {
-        storage.ref().child(`images/${this.uploadFile.name}`).put(this.uploadFile)
+      addImage (id, filename) {
+        storage.ref().child(`images/${filename}`).put(this.uploadFile)
           .then((snapshot) => {
             snapshot.ref.getDownloadURL().then((downloadURL) => {
               db.collection('items').doc(id).update({"imgPath": downloadURL})
@@ -115,15 +115,16 @@
         // アイテムデータ作成
         const now = new Date();
         var id = String(now.getTime());
+        var filename = this.uploadFile.name + '_' + id;
         db.collection('items').doc(id).set({
           name: this.inputItemName,
           referee: this.inputItemReferee,
-          filename: this.uploadFile.name,
+          filename: filename,
           count: 0,
           createdAt: now,
         });
         // storageへの画像追加
-        this.addImage(id);
+        this.addImage(id, filename);
         // ダイアログを閉じる
         this.hideCreateForm();
       },
