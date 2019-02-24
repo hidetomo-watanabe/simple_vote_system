@@ -1,40 +1,47 @@
 <template>
-  <ul v-if="items.length">
-    <div class="items">
-      <table>
-        <tr>
-          <td class="item" v-for="(item, index) in items" :key="index">
-            <h4>
-              {{item.name}}
-              <button v-on:click="deleteItem(item.id, item.name, item.filename)">
-                <img src="../assets/delete.png" alt="delete" title="delete">
-              </button>
-            </h4>
-            <div class="referee">{{item.referee}}</div>
-          </td>
-        </tr>
-        <tr>
-          <td class="item" v-for="(item, index) in items" :key="index">
-            <img :src="getImgPath(item.imgPath)" :alt="item.name" :title="item.name">
-          </td>
-        </tr>
-        <tr>
-          <td class="item" v-for="(item, index) in items" :key="index">
-            <div class="good">
-              <button v-on:click="incrementCount(item.id, item.count)">
-                <img src="../assets/good.png" alt="good" title="good">
-                <div class="count">{{item.count}}</div>
-              </button>
-            </div>
-          </td>
-        </tr>
-      </table>
+  <div>
+    <div class="loading" v-show="loading">
+      <img src="../assets/loading.gif" alt="loading" title="loading">
     </div>
-  </ul>
-  <ul v-else>
-    <h2>アイテムを追加してください</h2>
-    <br><br>
-  </ul>
+    <div v-show="!loading">
+      <ul v-if="items.length">
+        <div class="items">
+          <table>
+            <tr>
+              <td class="item" v-for="(item, index) in items" :key="index">
+                <h4>
+                  {{item.name}}
+                  <button v-on:click="deleteItem(item.id, item.name, item.filename)">
+                    <img src="../assets/delete.png" alt="delete" title="delete">
+                  </button>
+                </h4>
+                <div class="referee">{{item.referee}}</div>
+              </td>
+            </tr>
+            <tr>
+              <td class="item" v-for="(item, index) in items" :key="index">
+                <img :src="getImgPath(item.imgPath)" :alt="item.name" :title="item.name">
+              </td>
+            </tr>
+            <tr>
+              <td class="item" v-for="(item, index) in items" :key="index">
+                <div class="good">
+                  <button v-on:click="incrementCount(item.id, item.count)">
+                    <img src="../assets/good.png" alt="good" title="good">
+                    <div class="count">{{item.count}}</div>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </ul>
+      <ul v-else>
+        <h2>アイテムを追加してください</h2>
+        <br><br>
+      </ul>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -45,6 +52,7 @@
     name: 'Item',
     data () {
       return {
+        loading: true,
         items: [],
       }
     },
@@ -53,6 +61,12 @@
         // firestoreのitemsコレクションを参照
         items: db.collection('items').orderBy('createdAt'),
       }
+    },
+    mounted() {
+      // loading終了
+      setTimeout(() => {
+        this.loading = false;
+      }, 1000);
     },
     methods: {
       getImgPath (imgPath) {
@@ -78,6 +92,9 @@
 </script>
 
 <style scoped>
+  .loading {
+    text-align: center;
+  }
   .items {
     overflow: auto;
     white-space: nowrap;
