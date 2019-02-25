@@ -37,7 +37,9 @@
         </div>
       </ul>
       <ul v-else>
-        <h2>アイテムを追加してください</h2>
+        <div class="noItem">
+          <h2>アイテムを追加してください</h2>
+        </div>
         <br><br>
       </ul>
     </div>
@@ -134,5 +136,9 @@
     border: 10px solid transparent;
     border-right: 15px solid #0068b7;
     z-index: 0;
+  }
+  .noItem {
+    text-align: center;
+    font-family: "Meiryo";
   }
 </style>
