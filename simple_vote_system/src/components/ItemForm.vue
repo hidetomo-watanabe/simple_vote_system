@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-show="!loading">
     <!--フォームの表示ボタン-->
     <v-btn
         color=#0068b7
@@ -65,6 +65,7 @@
     components: {
     },
     data: () => ({
+      loading: true,
       // form入力データ
       inputItemName: "",
       inputItemReferee: "",
@@ -78,6 +79,12 @@
       // Formダイアログの表示可否
       displayForm: false,
     }),
+    mounted() {
+      // loading終了
+      setTimeout(() => {
+        this.loading = false;
+      }, 1500);
+    },
     methods: {
       // ファイル選択時の処理
       changeFile: function(e){

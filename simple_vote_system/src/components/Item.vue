@@ -66,7 +66,7 @@
       // loading終了
       setTimeout(() => {
         this.loading = false;
-      }, 1000);
+      }, 1500);
     },
     methods: {
       getImgPath (imgPath) {
