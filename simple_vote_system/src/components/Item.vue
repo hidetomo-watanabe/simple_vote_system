@@ -12,7 +12,7 @@
                 <h4>
                   {{item.name}}
                   <button v-on:click="deleteItem(item.id, item.name, item.filename)">
-                    <img src="../assets/delete.png" alt="delete" title="delete">
+                    <v-icon small>delete</v-icon>
                   </button>
                 </h4>
                 <div class="referee">{{item.referee}}</div>
