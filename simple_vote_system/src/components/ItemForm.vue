@@ -3,6 +3,7 @@
     <!--フォームの表示ボタン-->
     <v-btn
         color=#0068b7
+        small
         dark
         center
         fab
@@ -10,7 +11,7 @@
         right
         @click="showCreateForm"
     >
-      <v-icon>edit</v-icon>
+      <v-icon>add</v-icon>
     </v-btn>
     <v-dialog v-model="displayForm" max-width="500px">
       <!--アイテム入力フォーム-->
