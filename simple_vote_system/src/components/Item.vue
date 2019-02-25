@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="loading" v-show="loading">
-      <img src="../assets/loading.gif" alt="loading" title="loading">
+      <img src="../assets/loading_page.gif" alt="loading_page" title="loading_page">
     </div>
     <div v-show="!loading">
       <ul v-if="items.length">
@@ -73,7 +73,7 @@
         if (imgPath) {
           return imgPath;
         } else {
-          return require('../assets/loading.gif');
+          return require('../assets/loading_image.gif');
         }
       },
       deleteItem (id, name, filename) {
