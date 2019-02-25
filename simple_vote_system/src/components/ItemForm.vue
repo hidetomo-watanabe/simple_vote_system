@@ -37,9 +37,13 @@
               >
             </div>
             <div v-else>
-              <button @click="removePreviewImage">
-                <img :src="previewImage" /><br>画像削除
-              </button>
+              <div class="preview">
+                preview
+                <button @click="removePreviewImage">
+                  <v-icon small>delete</v-icon>
+                </button>
+              </div>
+              <img :src="previewImage">
             </div>
             <br>
             <br>
@@ -156,6 +160,9 @@
 </script>
 
 <style scoped>
+  .preview {
+    color: #808080;
+  }
   .addItemBtn {
     text-align: center;
   }
