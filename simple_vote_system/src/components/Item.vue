@@ -26,10 +26,16 @@
             <tr>
               <td class="item" v-for="(item, index) in items" :key="index">
                 <div class="good">
-                  <button v-bind:disabled="isPush(index)" v-on:click="incrementCount(index, item.id, item.count)">
-                    <img src="../assets/good.png" alt="good" title="good">
-                  </button>
-                  <div class="count">{{item.count}}</div>
+                  <div v-show="isPush(index)">
+                    <img src="../assets/good_gray.png" alt="good_gray" title="good_gray">
+                    <div class="count">{{item.count}}</div>
+                  </div>
+                  <div v-show="!isPush(index)">
+                    <button v-on:click="incrementCount(index, item.id, item.count)">
+                      <img src="../assets/good.png" alt="good" title="good">
+                    </button>
+                    <div class="count">{{item.count}}</div>
+                  </div>
                 </div>
               </td>
             </tr>
