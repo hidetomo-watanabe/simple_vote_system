@@ -26,10 +26,10 @@
             <tr>
               <td class="item" v-for="(item, index) in items" :key="index">
                 <div class="good">
-                  <button v-on:click="incrementCount(item.id, item.count)">
+                  <button v-bind:disabled="isPush(index)" v-on:click="incrementCount(index, item.id, item.count)">
                     <img src="../assets/good.png" alt="good" title="good">
-                    <div class="count">{{item.count}}</div>
                   </button>
+                  <div class="count">{{item.count}}</div>
                 </div>
               </td>
             </tr>
@@ -55,6 +55,7 @@
     data () {
       return {
         loading: true,
+        isPushList: [],
         items: [],
       }
     },
@@ -86,7 +87,15 @@
         storage.ref().child(`images/${filename}`).delete();
         db.collection('items').doc(id).delete();
       },
-      incrementCount (id, count) {
+      isPush (index) {
+        if (this.isPushList.indexOf(index) == -1) {
+            return false;
+        } else {
+            return true;
+        }
+      },
+      incrementCount (index, id, count) {
+        this.isPushList.push(index);
         db.collection('items').doc(id).update({"count": count + 1});
       },
     }
