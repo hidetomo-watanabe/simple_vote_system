@@ -44,14 +44,17 @@
 
   export default {
     name: "ChatBoard",
-    data: () => ({
-      loading: true,
-      comments: [],
-    }),
+    data () {
+      return {
+        theme: this.$route.params.theme,
+        loading: true,
+        comments: [],
+      }
+    },
     firestore() {
       return {
         // firestoreのcommentsコレクションを参照
-        comments: db.collection("comments").orderBy("createdAt"),
+        comments: db.collection("comments").where("theme", "==", this.theme).orderBy("createdAt"),
       }
     },
     mounted() {

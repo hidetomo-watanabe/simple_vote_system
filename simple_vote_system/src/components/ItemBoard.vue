@@ -60,6 +60,7 @@
     name: "ItemBoard",
     data () {
       return {
+        theme: this.$route.params.theme,
         loading: true,
         isPushList: [],
         items: [],
@@ -68,7 +69,7 @@
     firestore() {
       return {
         // firestoreのitemsコレクションを参照
-        items: db.collection("items").orderBy("createdAt"),
+        items: db.collection("items").where("theme", "==", this.theme).orderBy("createdAt"),
       }
     },
     mounted() {

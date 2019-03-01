@@ -69,21 +69,24 @@
   export default {
     components: {
     },
-    data: () => ({
-      loading: true,
-      // form入力データ
-      inputItemName: "",
-      inputItemReferee: "",
-      previewImage: "",
-      uploadFile: null,
-      // バリデーション
-      valid: true,
-      ItemRules: [
-        v => !!v || "コメントは必須項目です",
-      ],
-      // Formダイアログの表示可否
-      displayForm: false,
-    }),
+    data () {
+      return {
+        theme: this.$route.params.theme,
+        loading: true,
+        // form入力データ
+        inputItemName: "",
+        inputItemReferee: "",
+        previewImage: "",
+        uploadFile: null,
+        // バリデーション
+        valid: true,
+        ItemRules: [
+          v => !!v || "コメントは必須項目です",
+        ],
+        // Formダイアログの表示可否
+        displayForm: false,
+      }
+    },
     mounted() {
       // loading終了
       setTimeout(() => {
@@ -129,6 +132,7 @@
         var id = String(now.getTime());
         var filename = this.uploadFile.name + "_" + id;
         db.collection("items").doc(id).set({
+          theme: this.theme,
           name: this.inputItemName,
           referee: this.inputItemReferee,
           filename: filename,
