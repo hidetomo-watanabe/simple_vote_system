@@ -43,19 +43,19 @@
         comments: [],
       }
     },
-    firestore() {
+    firestore () {
       return {
         comments: db.collection("comments").where("theme", "==", this.theme).orderBy("createdAt"),
       }
     },
-    mounted() {
+    mounted () {
       // loading終了
       setTimeout(() => {
         this.loading = false;
       }, 1500);
     },
     methods: {
-      deleteComment(id) {
+      deleteComment (id) {
         if (!confirm("コメントを削除してよろしいですか？")) {
           return
         }

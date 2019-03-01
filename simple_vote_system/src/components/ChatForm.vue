@@ -7,8 +7,9 @@
           <div v-show="checkHashtag(index)">
             <v-btn
                 class="setHashtag"
-                color="#0068b7"
-                disabled
+                color="#DDDDDD"
+                depressed
+                v-on:click="resetHashtag()"
             >
               #{{item.name}}
             </v-btn>
@@ -16,7 +17,7 @@
           <div v-show="!checkHashtag(index)">
             <v-btn
                 class="setHashtag"
-                color="#0068b7"
+                color="#808080"
                 v-on:click="setHashtag(index, item.name)"
             >
               #{{item.name}}
@@ -62,12 +63,12 @@
         items: [],
       }
     },
-    firestore() {
+    firestore () {
       return {
         items: db.collection("items").where("theme", "==", this.theme).orderBy("createdAt"),
       }
     },
-    mounted() {
+    mounted () {
       // loading終了
       setTimeout(() => {
         this.loading = false;
@@ -82,11 +83,15 @@
             return false;
         }
       },
-      setHashtag(index, name) {
+      resetHashtag () {
+        this.isPush = "";
+        this.inputHashtag = "";
+      },
+      setHashtag (index, name) {
         this.isPush = index;
         this.inputHashtag = "#" + name;
       },
-      addComment() {
+      addComment () {
         const now = new Date();
         db.collection("comments").add({
           theme: this.theme,
@@ -97,10 +102,9 @@
         this.clear();
       },
       // 入力データの初期化
-      clear() {
-        this.isPush = "";
+      clear () {
+        this.resetHashtag();
         this.inputComment = "";
-        this.inputHashtag = "";
       },
     },
   }

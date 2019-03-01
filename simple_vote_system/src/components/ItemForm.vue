@@ -84,7 +84,7 @@
         displayForm: false,
       }
     },
-    mounted() {
+    mounted () {
       // loading終了
       setTimeout(() => {
         this.loading = false;
@@ -100,7 +100,7 @@
         this.createPreviewImage(files[0]);
         this.uploadFile = files[0];
       },
-      createPreviewImage(file) {
+      createPreviewImage (file) {
         var reader = new FileReader();
         var vm = this;
         reader.onload = function(e) {
@@ -108,7 +108,7 @@
         };
         reader.readAsDataURL(file);
       },
-      removePreviewImage: function() {
+      removePreviewImage () {
         this.previewImage = "";
       },
       // ファイルをupload
@@ -120,7 +120,7 @@
             })
           });
       },
-      addItem() {
+      addItem () {
         // アイテムデータ作成
         const now = new Date();
         var id = String(now.getTime());
@@ -139,16 +139,16 @@
         this.hideCreateForm();
       },
       // Formの初期化
-      clear() {
+      clear () {
         this.removePreviewImage();
         this.$refs.form.reset();
       },
       // Formダイアログの表示
-      showCreateForm() {
+      showCreateForm () {
         this.displayForm = true;
       },
       // Formダイアログの非表示
-      hideCreateForm() {
+      hideCreateForm () {
         this.clear();
         this.displayForm = false;
       },

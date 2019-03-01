@@ -66,12 +66,12 @@
         items: [],
       }
     },
-    firestore() {
+    firestore () {
       return {
         items: db.collection("items").where("theme", "==", this.theme).orderBy("createdAt"),
       }
     },
-    mounted() {
+    mounted () {
       // loading終了
       setTimeout(() => {
         this.loading = false;

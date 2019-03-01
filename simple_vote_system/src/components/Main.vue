@@ -3,8 +3,8 @@
     <v-container>
       <ItemForm/>
       <ItemBoard/>
-      <ChatBoard/>
       <ChatForm/>
+      <ChatBoard/>
     </v-container>
   </v-app>
 </template>
