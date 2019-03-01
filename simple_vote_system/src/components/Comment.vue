@@ -47,7 +47,7 @@
     </v-form>
     <ul v-if="comments.length">
       <v-list three-line>
-        <template v-for="(comment, index) in comments">
+        <div v-for="(comment, index) in comments" :key="index">
           <div v-show="isDisplayComment(comment.hashtag)">
             <v-list-tile
                 :key="index"
@@ -64,7 +64,7 @@
             </v-list-tile>
             <v-divider :key="comment.id"></v-divider>
           </div>
-        </template>
+        </div>
       </v-list>
     </ul>
     <ul v-else>
