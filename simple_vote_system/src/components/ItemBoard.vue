@@ -116,6 +116,9 @@
   .items {
     overflow: auto;
     white-space: nowrap;
+    border: solid 1pt #808080;
+    width: 95%;
+    margin: 0 0 0 15px;
   }
   .item {
     padding: 0 40px;
