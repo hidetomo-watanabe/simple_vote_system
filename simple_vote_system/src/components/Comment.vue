@@ -94,7 +94,7 @@
     },
     firestore () {
       return {
-        items: db.collection("items").where("theme", "==", this.theme).orderBy("createdAt"),
+        items: db.collection("items").where("theme", "==", this.theme).orderBy("count", "desc").orderBy("createdAt"),
         comments: db.collection("comments").where("theme", "==", this.theme).orderBy("createdAt"),
       }
     },
