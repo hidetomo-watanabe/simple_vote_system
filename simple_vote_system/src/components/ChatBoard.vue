@@ -53,7 +53,6 @@
     },
     firestore() {
       return {
-        // firestoreのcommentsコレクションを参照
         comments: db.collection("comments").where("theme", "==", this.theme).orderBy("createdAt"),
       }
     },

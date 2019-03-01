@@ -68,7 +68,6 @@
     },
     firestore() {
       return {
-        // firestoreのitemsコレクションを参照
         items: db.collection("items").where("theme", "==", this.theme).orderBy("createdAt"),
       }
     },
@@ -94,6 +93,7 @@
         storage.ref().child(`images/${filename}`).delete();
         db.collection("items").doc(id).delete();
       },
+      // goodを押したかどうか
       isPush (index) {
         if (this.isPushList.indexOf(index) == -1) {
             return false;

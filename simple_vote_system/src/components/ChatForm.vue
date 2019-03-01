@@ -64,7 +64,6 @@
     },
     firestore() {
       return {
-        // firestoreのitemsコレクションを参照
         items: db.collection("items").where("theme", "==", this.theme).orderBy("createdAt"),
       }
     },
@@ -75,6 +74,7 @@
       }, 1500);
     },
     methods: {
+      // hashtagが選択されているか
       checkHashtag (index) {
         if (this.isPush === index) {
             return true;
@@ -94,7 +94,13 @@
           hashtag: this.inputHashtag,
           createdAt: now,
         });
+        this.clear();
+      },
+      // 入力データの初期化
+      clear() {
+        this.isPush = "";
         this.inputComment = "";
+        this.inputHashtag = "";
       },
     },
   }

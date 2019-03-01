@@ -73,17 +73,14 @@
       return {
         theme: this.$route.params.theme,
         loading: true,
-        // form入力データ
         inputItemName: "",
         inputItemReferee: "",
         previewImage: "",
         uploadFile: null,
-        // バリデーション
         valid: true,
         ItemRules: [
           v => !!v || "コメントは必須項目です",
         ],
-        // Formダイアログの表示可否
         displayForm: false,
       }
     },
@@ -103,7 +100,6 @@
         this.createPreviewImage(files[0]);
         this.uploadFile = files[0];
       },
-      // ファイルプレビューを作成
       createPreviewImage(file) {
         var reader = new FileReader();
         var vm = this;
@@ -112,7 +108,6 @@
         };
         reader.readAsDataURL(file);
       },
-      // ファイルプレビューを削除
       removePreviewImage: function() {
         this.previewImage = "";
       },
@@ -125,7 +120,6 @@
             })
           });
       },
-      // アイテム追加
       addItem() {
         // アイテムデータ作成
         const now = new Date();
@@ -153,7 +147,6 @@
       showCreateForm() {
         this.displayForm = true;
       },
-      //
       // Formダイアログの非表示
       hideCreateForm() {
         this.clear();
