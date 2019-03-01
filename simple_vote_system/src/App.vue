@@ -2,7 +2,7 @@
   <v-app>
     <v-container>
       <ItemForm/>
-      <Item/>
+      <ItemBoard/>
       <ChatBoard/>
       <ChatForm/>
     </v-container>
@@ -10,7 +10,7 @@
 </template>
 
 <script>
-  import Item from './components/Item'
+  import ItemBoard from './components/ItemBoard'
   import ItemForm from './components/ItemForm'
   import ChatBoard from './components/ChatBoard'
   import ChatForm from './components/ChatForm'
@@ -18,7 +18,7 @@
   export default {
     name: 'App',
     components: {
-      Item,
+      ItemBoard,
       ItemForm,
       ChatBoard,
       ChatForm,

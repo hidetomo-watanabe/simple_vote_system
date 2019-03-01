@@ -57,7 +57,7 @@
   import {storage} from "../plugins/firebase";
 
   export default {
-    name: "Item",
+    name: "ItemBoard",
     data () {
       return {
         loading: true,
