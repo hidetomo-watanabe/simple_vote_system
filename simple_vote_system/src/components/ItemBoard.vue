@@ -26,11 +26,11 @@
             <tr>
               <td class="item" v-for="(item, index) in items" :key="index">
                 <div class="good">
-                  <div v-show="isPush(index)">
+                  <div v-show="isGoodPushed(index)">
                     <img src="../assets/good_gray.png" alt="good_gray" title="good_gray">
                     <div class="count">{{item.count}}</div>
                   </div>
-                  <div v-show="!isPush(index)">
+                  <div v-show="!isGoodPushed(index)">
                     <button v-on:click="incrementCount(index, item.id, item.count)">
                       <img src="../assets/good.png" alt="good" title="good">
                     </button>
@@ -62,7 +62,7 @@
       return {
         theme: this.$route.params.theme,
         loading: true,
-        isPushList: [],
+        isGoodPushedList: [],
         items: [],
       }
     },
@@ -94,15 +94,15 @@
         db.collection("items").doc(id).delete();
       },
       // goodを押したかどうか
-      isPush (index) {
-        if (this.isPushList.indexOf(index) == -1) {
+      isGoodPushed (index) {
+        if (this.isGoodPushedList.indexOf(index) == -1) {
             return false;
         } else {
             return true;
         }
       },
       incrementCount (index, id, count) {
-        this.isPushList.push(index);
+        this.isGoodPushedList.push(index);
         db.collection("items").doc(id).update({"count": count + 1});
       },
     }
