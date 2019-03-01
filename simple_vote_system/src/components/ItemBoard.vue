@@ -88,7 +88,7 @@
       deleteItem (id, name, filename) {
         var res = confirm(`${name}を削除しますか？`);
         if (res !== true) {
-            return;
+          return;
         }
         storage.ref().child(`images/${filename}`).delete();
         db.collection("items").doc(id).delete();
@@ -96,9 +96,9 @@
       // goodを押したかどうか
       isGoodPushed (index) {
         if (this.isGoodPushedList.indexOf(index) == -1) {
-            return false;
+          return false;
         } else {
-            return true;
+          return true;
         }
       },
       incrementCount (index, id, count) {

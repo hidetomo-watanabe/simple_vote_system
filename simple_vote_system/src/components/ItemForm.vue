@@ -17,19 +17,20 @@
       <!--アイテム入力フォーム-->
       <v-card>
         <v-container>
-          <v-form ref="form" v-model="valid" lazy-validation>
+          <v-form ref="form" v-model="validation" lazy-validation>
             <v-text-field
                 v-model="inputItemName"
-                :rules="ItemRules"
+                :rules="nameRule"
                 label="アイテム名"
                 required
             ></v-text-field>
             <v-text-field
                 v-model="inputItemReferee"
-                :rules="ItemRules"
+                :rules="refereeRule"
                 label="投稿者"
                 required
             ></v-text-field>
+            <br>
             <div v-if="!previewImage">
               <input
                 type="file"
@@ -49,7 +50,7 @@
             <br>
             <div class="addItemBtn">
               <v-btn
-                :disabled="!valid || !previewImage"
+                :disabled="!validation || !previewImage"
                 @click="addItem"
               >
                 アイテム追加
@@ -77,11 +78,21 @@
         inputItemReferee: "",
         previewImage: "",
         uploadFile: null,
-        valid: true,
-        ItemRules: [
-          v => !!v || "コメントは必須項目です",
+        validation: false,
+        nameRule: [
+          v => !!v || "アイテム名は必須項目です",
+          v => !this.existSameItemName(v) || "既にそのアイテム名は存在します",
+        ],
+        refereeRule: [
+          v => !!v || "投稿者は必須項目です",
         ],
         displayForm: false,
+        items: [],
+      }
+    },
+    firestore () {
+      return {
+        items: db.collection("items").where("theme", "==", this.theme).orderBy("createdAt"),
       }
     },
     mounted () {
@@ -110,6 +121,15 @@
       },
       removePreviewImage () {
         this.previewImage = "";
+      },
+      // 同じnameのitemが存在するかどうか
+      existSameItemName (name) {
+        for (let item of this.items) {
+          if (name == item.name) {
+            return true;
+          }
+        }
+        return false;
       },
       // ファイルをupload
       addImage (id, filename) {
