@@ -20,7 +20,7 @@
             </tr>
             <tr>
               <td class="item" v-for="(item, index) in items" :key="index">
-                <img :src="getImgPath(item.imgPath)" :alt="item.name" :title="item.name">
+                <img class="itemImg" :src="getImgPath(item.imgPath)" :alt="item.name" :title="item.name">
               </td>
             </tr>
             <tr>
@@ -117,7 +117,10 @@
     white-space: nowrap;
   }
   .item {
-    padding: 0px 40px;
+    padding: 0 40px;
+  }
+  .itemImg {
+    border: solid 1pt #808080;
   }
   .referee {
     color: #808080;
