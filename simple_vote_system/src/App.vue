@@ -4,21 +4,24 @@
       <ItemForm/>
       <Item/>
       <ChatBoard/>
+      <ChatForm/>
     </v-container>
   </v-app>
 </template>
 
 <script>
   import Item from './components/Item'
-  import ChatBoard from './components/ChatBoard'
   import ItemForm from './components/ItemForm'
+  import ChatBoard from './components/ChatBoard'
+  import ChatForm from './components/ChatForm'
 
   export default {
     name: 'App',
     components: {
       Item,
-      ChatBoard,
       ItemForm,
+      ChatBoard,
+      ChatForm,
     },
   }
 </script>
