@@ -130,7 +130,7 @@
     display: inline-block;
     margin: 0.3em 0 1.5em 15px;
     padding: 0 5px;
-    width: 30px;
+    width: 35px;
     height: 30px;
     line-height: 30px;
     vertical-align: middle;
