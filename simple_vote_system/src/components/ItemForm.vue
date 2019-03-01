@@ -2,7 +2,7 @@
   <div v-show="!loading">
     <!--フォームの表示ボタン-->
     <v-btn
-        color=#0068b7
+        color="#0068b7"
         small
         dark
         center

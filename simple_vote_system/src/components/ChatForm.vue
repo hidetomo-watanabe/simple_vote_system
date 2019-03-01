@@ -1,5 +1,30 @@
 <template>
   <div v-show="!loading">
+    <br>
+    <table>
+      <tr>
+        <td v-for="(item, index) in items" :key="index">
+          <div v-show="checkHashtag(index)">
+            <v-btn
+                class="setHashtag"
+                color="#0068b7"
+                disabled
+            >
+              #{{item.name}}
+            </v-btn>
+          </div>
+          <div v-show="!checkHashtag(index)">
+            <v-btn
+                class="setHashtag"
+                color="#0068b7"
+                v-on:click="setHashtag(index, item.name)"
+            >
+              #{{item.name}}
+            </v-btn>
+          </div>
+        </td>
+      </tr>
+    </table>
     <v-form>
       <v-container>
         <v-layout row wrap>
@@ -29,10 +54,15 @@
     name: "ChatForm",
     data: () => ({
       loading: true,
+      isPush: "",
       inputComment: "",
+      inputHashtag: "",
+      items: [],
     }),
     firestore() {
       return {
+        // firestoreのitemsコレクションを参照
+        items: db.collection("items").orderBy("createdAt"),
       }
     },
     mounted() {
@@ -42,11 +72,22 @@
       }, 1500);
     },
     methods: {
+      checkHashtag (index) {
+        if (this.isPush === index) {
+            return true;
+        } else {
+            return false;
+        }
+      },
+      setHashtag(index, name) {
+        this.isPush = index;
+        this.inputHashtag = "#" + name;
+      },
       addComment() {
         const now = new Date();
         db.collection("comments").add({
           content: this.inputComment,
-          avatar: "https://picsum.photos/50?image=" + (Math.floor(Math.random() * 400) + 1),
+          hashtag: this.inputHashtag,
           createdAt: now,
         });
         this.inputComment = "";
@@ -54,3 +95,11 @@
     },
   }
 </script>
+
+<style scoped>
+  .setHashtag {
+    margin: 0 0 0 1.8em;
+    color: #FFF;
+    font-weight: bold;
+  }
+</style>
