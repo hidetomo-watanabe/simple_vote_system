@@ -13,17 +13,9 @@
                 <v-list-tile-sub-title>
                   {{comment.createdAt.toDate().toLocaleString()}}
                   <v-icon @click="deleteComment(comment.id)" small>delete</v-icon>
+                  {{comment.hashtag}}
                 </v-list-tile-sub-title>
               </v-list-tile-content>
-
-              <v-list-tile-action>
-              </v-list-tile-action>
-
-              <v-list-tile-avatar>
-                <div class="hashtag">
-                  {{comment.hashtag}}
-                </div>
-              </v-list-tile-avatar>
 
             </v-list-tile>
             <v-divider :key="comment.id"></v-divider>
@@ -74,12 +66,6 @@
 </script>
 
 <style scoped>
-  .hashtag {
-    display: inline-block;
-    margin: 1em 0 0 0;
-    vertical-align: middle;
-    font-weight: bold;
-  }
   .noComment {
     text-align: center;
     font-family: "Meiryo";
