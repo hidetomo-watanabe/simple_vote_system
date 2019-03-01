@@ -30,7 +30,7 @@
 </template>
 
 <script>
-  import {db} from '../plugins/firebase';
+  import {db} from "../plugins/firebase";
 
   export default {
     name: "ChatBoard",
@@ -41,7 +41,7 @@
     firestore() {
       return {
         // firestoreのcommentsコレクションを参照
-        comments: db.collection('comments').orderBy('createdAt'),
+        comments: db.collection("comments").orderBy("createdAt"),
       }
     },
     mounted() {
@@ -52,10 +52,10 @@
     },
     methods: {
       deleteComment(id) {
-        if (!confirm('コメントを削除してよろしいですか？')) {
+        if (!confirm("コメントを削除してよろしいですか？")) {
           return
         }
-        db.collection('comments').doc(id).delete()
+        db.collection("comments").doc(id).delete()
       },
     },
   }

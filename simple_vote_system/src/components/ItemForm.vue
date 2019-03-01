@@ -63,8 +63,8 @@
 </template>
 
 <script>
-  import {db} from '../plugins/firebase';
-  import {storage} from '../plugins/firebase';
+  import {db} from "../plugins/firebase";
+  import {storage} from "../plugins/firebase";
 
   export default {
     components: {
@@ -74,12 +74,12 @@
       // form入力データ
       inputItemName: "",
       inputItemReferee: "",
-      previewImage: '',
+      previewImage: "",
       uploadFile: null,
       // バリデーション
       valid: true,
       ItemRules: [
-        v => !!v || 'コメントは必須項目です',
+        v => !!v || "コメントは必須項目です",
       ],
       // Formダイアログの表示可否
       displayForm: false,
@@ -111,14 +111,14 @@
       },
       // ファイルプレビューを削除
       removePreviewImage: function() {
-        this.previewImage = '';
+        this.previewImage = "";
       },
       // ファイルをupload
       addImage (id, filename) {
         storage.ref().child(`images/${filename}`).put(this.uploadFile)
           .then((snapshot) => {
             snapshot.ref.getDownloadURL().then((downloadURL) => {
-              db.collection('items').doc(id).update({"imgPath": downloadURL})
+              db.collection("items").doc(id).update({"imgPath": downloadURL})
             })
           });
       },
@@ -127,8 +127,8 @@
         // アイテムデータ作成
         const now = new Date();
         var id = String(now.getTime());
-        var filename = this.uploadFile.name + '_' + id;
-        db.collection('items').doc(id).set({
+        var filename = this.uploadFile.name + "_" + id;
+        db.collection("items").doc(id).set({
           name: this.inputItemName,
           referee: this.inputItemReferee,
           filename: filename,

@@ -53,11 +53,11 @@
 </template>
 
 <script>
-  import {db} from '../plugins/firebase';
-  import {storage} from '../plugins/firebase';
+  import {db} from "../plugins/firebase";
+  import {storage} from "../plugins/firebase";
 
   export default {
-    name: 'Item',
+    name: "Item",
     data () {
       return {
         loading: true,
@@ -68,7 +68,7 @@
     firestore() {
       return {
         // firestoreのitemsコレクションを参照
-        items: db.collection('items').orderBy('createdAt'),
+        items: db.collection("items").orderBy("createdAt"),
       }
     },
     mounted() {
@@ -82,7 +82,7 @@
         if (imgPath) {
           return imgPath;
         } else {
-          return require('../assets/loading_image.gif');
+          return require("../assets/loading_image.gif");
         }
       },
       deleteItem (id, name, filename) {
@@ -91,7 +91,7 @@
             return;
         }
         storage.ref().child(`images/${filename}`).delete();
-        db.collection('items').doc(id).delete();
+        db.collection("items").doc(id).delete();
       },
       isPush (index) {
         if (this.isPushList.indexOf(index) == -1) {
@@ -102,7 +102,7 @@
       },
       incrementCount (index, id, count) {
         this.isPushList.push(index);
-        db.collection('items').doc(id).update({"count": count + 1});
+        db.collection("items").doc(id).update({"count": count + 1});
       },
     }
   }

@@ -23,7 +23,7 @@
 </template>
 
 <script>
-  import {db} from '../plugins/firebase';
+  import {db} from "../plugins/firebase";
 
   export default {
     name: "ChatForm",
