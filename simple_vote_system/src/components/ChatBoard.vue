@@ -1,30 +1,37 @@
 <template>
   <div>
     <div v-show="!loading">
-      <v-list three-line>
-        <template v-for="(comment, index) in comments">
-          <v-list-tile
-              :key="index"
-              avatar
-          >
-            <v-list-tile-avatar>
-              <img :src="comment.avatar">
-            </v-list-tile-avatar>
+      <ul v-if="comments.length">
+        <v-list three-line>
+          <template v-for="(comment, index) in comments">
+            <v-list-tile
+                :key="index"
+                avatar
+            >
+              <v-list-tile-avatar>
+                <img :src="comment.avatar">
+              </v-list-tile-avatar>
 
-            <v-list-tile-content>
-              <v-list-tile-sub-title class="text--primary subheading">{{comment.content}}</v-list-tile-sub-title>
-              <v-list-tile-sub-title>
-                {{comment.createdAt.toDate().toLocaleString()}}
-                <v-icon @click="deleteComment(comment.id)" small>delete</v-icon>
-              </v-list-tile-sub-title>
-            </v-list-tile-content>
+              <v-list-tile-content>
+                <v-list-tile-sub-title class="text--primary subheading">{{comment.content}}</v-list-tile-sub-title>
+                <v-list-tile-sub-title>
+                  {{comment.createdAt.toDate().toLocaleString()}}
+                  <v-icon @click="deleteComment(comment.id)" small>delete</v-icon>
+                </v-list-tile-sub-title>
+              </v-list-tile-content>
 
-            <v-list-tile-action>
-            </v-list-tile-action>
-          </v-list-tile>
-          <v-divider :key="comment.id"></v-divider>
-        </template>
-      </v-list>
+              <v-list-tile-action>
+              </v-list-tile-action>
+            </v-list-tile>
+            <v-divider :key="comment.id"></v-divider>
+          </template>
+        </v-list>
+      </ul>
+      <ul v-else>
+        <div class="noComment">
+          <h2>コメントがありません</h2>
+        </div>
+      </ul>
     </div>
   </div>
 </template>
@@ -60,3 +67,10 @@
     },
   }
 </script>
+
+<style>
+  .noComment {
+    text-align: center;
+    font-family: "Meiryo";
+  }
+</style>

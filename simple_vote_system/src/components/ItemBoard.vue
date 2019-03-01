@@ -44,7 +44,7 @@
       </ul>
       <ul v-else>
         <div class="noItem">
-          <h2>アイテムを追加してください</h2>
+          <h2>アイテムがありません</h2>
         </div>
         <br><br>
       </ul>
