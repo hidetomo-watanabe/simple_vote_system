@@ -113,12 +113,36 @@
   .loading {
     text-align: center;
   }
+  /*ホワイトボード風*/
   .items {
     overflow: auto;
-    white-space: nowrap;
-    border: solid 1pt #808080;
-    width: 95%;
-    margin: 0 0 0 15px;
+    position: relative;
+    margin: 2em auto 0 2.5em;
+    padding: 3.5em 1em 1em;
+    width: 93%; /* ボックス幅 */
+    background-color: #fffff9; /* ボックス背景色 */
+    color: #000; /* 文章色 */
+    border: 5px solid #e6b422; /* 枠線 */
+    border-radius: 3px; /* 角の丸み */
+    box-shadow: 0 0 8px #333, 0 0 2px #555 inset;
+  }
+  .items::before,
+  .items::after {
+    position: absolute;
+    content: '';
+    width: 25px;
+    bottom: 3px;
+    border-radius: 2px;
+    box-shadow: 1px 1px 3px #666;
+  }
+  .items::before {
+    right: 55px;
+    border: solid 3px #333333; /*飾ペン黒*/
+  }
+  .items::after {
+    right: 20px;
+    border: solid 3px #ff42a0; /*飾ペンピンク*/
+    transform: rotate(8deg); /*飾ペン角度*/
   }
   .item {
     padding: 0 40px;

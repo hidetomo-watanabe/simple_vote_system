@@ -46,9 +46,9 @@
       </v-container>
     </v-form>
     <ul v-if="comments.length">
-      <v-list three-line>
+      <v-list two-line>
         <div v-for="(comment, index) in comments" :key="index">
-          <div v-show="isDisplayComment(comment.hashtag)">
+          <div class="comment" v-show="isDisplayComment(comment.hashtag)">
             <v-list-tile
                 :key="index"
             >
@@ -160,6 +160,28 @@
     margin: 0 0 0 1.8em;
     color: #FFF;
     font-weight: bold;
+  }
+  /*テープ風*/
+  .comment {
+    position: relative;
+    width: 90%;
+    margin: 2.5em auto;
+    padding: 35px 30px 20px;
+    color: #770000;/* 文字色 */
+    background-color: #e8ddbd; /*枠背景色*/
+    box-shadow: inset 0 0 40px rgba(204, 186, 136,1), 0 2px 2px #ccc;
+  }
+  .comment::before {
+    display: block;
+    position: absolute;
+    content: "";
+    width: 140px;
+    height: 35px;
+    left: 35%;
+    top: -16px;
+    background-color: rgba(204, 186, 136,0.3);/*テープ色*/
+    box-shadow: 0 0 3px rgba(0,0,0,0.1);
+    transform: rotate( -3deg ); /*テープ角度*/
   }
   .noComment {
     text-align: center;

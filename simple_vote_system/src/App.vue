@@ -5,7 +5,4 @@
 </template>
 
 <style scoped>
-  .top {
-    font-weight: bold;
-  }
 </style>
