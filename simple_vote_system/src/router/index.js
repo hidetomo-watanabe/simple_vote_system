@@ -6,6 +6,7 @@ import Main from '@/components/Main.vue';
 Vue.use(VueRouter);
 
 const routes = [
+    { path: '/', redirect: '/sample' },
     { path: '/admin', component: Admin },
     { path: '/:theme', component: Main },
 ];
