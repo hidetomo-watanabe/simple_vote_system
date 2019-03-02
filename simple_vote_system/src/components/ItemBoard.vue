@@ -117,7 +117,7 @@
   .items {
     overflow: auto;
     position: relative;
-    margin: 2em auto 0 2.5em;
+    margin: 0 auto 0 2.5em;
     padding: 3.5em 1em 1em;
     width: 93%; /* ボックス幅 */
     background-color: #fffff9; /* ボックス背景色 */
