@@ -136,11 +136,13 @@
     box-shadow: 1px 1px 3px #666;
   }
   .items::before {
-    right: 55px;
+    position: absolute;
+    left: 55px;
     border: solid 3px #333333; /*飾ペン黒*/
   }
   .items::after {
-    right: 20px;
+    position: absolute;
+    left: 20px;
     border: solid 3px #ff42a0; /*飾ペンピンク*/
     transform: rotate(8deg); /*飾ペン角度*/
   }
