@@ -1,31 +1,33 @@
 <template>
   <div v-show="!loading">
     <br>
-    <table>
-      <tr>
-        <td v-for="(item, index) in items" :key="index">
-          <div v-show="isSelectedHashtag(item.name)">
-            <v-btn
-                class="selectHashtag"
-                color="#DDDDDD"
-                depressed
-                v-on:click="resetHashtag()"
-            >
-              #{{item.name}}
-            </v-btn>
-          </div>
-          <div v-show="!isSelectedHashtag(item.name)">
-            <v-btn
-                class="selectHashtag"
-                color="#808080"
-                v-on:click="setHashtag(item.name)"
-            >
-              #{{item.name}}
-            </v-btn>
-          </div>
-        </td>
-      </tr>
-    </table>
+    <div class="selectHashtags">
+      <table>
+        <tr>
+          <td v-for="(item, index) in items" :key="index">
+            <div v-show="isSelectedHashtag(item.name)">
+              <v-btn
+                  class="selectHashtag"
+                  color="#DDDDDD"
+                  depressed
+                  v-on:click="resetHashtag()"
+              >
+                #{{item.name}}
+              </v-btn>
+            </div>
+            <div v-show="!isSelectedHashtag(item.name)">
+              <v-btn
+                  class="selectHashtag"
+                  color="#808080"
+                  v-on:click="setHashtag(item.name)"
+              >
+                #{{item.name}}
+              </v-btn>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </div>
     <v-form>
       <v-container>
         <v-layout row wrap>
@@ -156,6 +158,9 @@
 </script>
 
 <style scoped>
+  .selectHashtags {
+    overflow: auto;
+  }
   .selectHashtag {
     margin: 0 0 0 1.8em;
     color: #FFF;
