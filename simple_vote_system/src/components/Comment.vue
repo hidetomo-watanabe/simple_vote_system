@@ -48,7 +48,7 @@
       </v-container>
     </v-form>
     <ul v-if="comments.length">
-      <v-list two-line>
+      <v-list class="comments">
         <div v-for="(comment, index) in comments" :key="index">
           <div class="comment" v-show="isDisplayComment(comment.hashtag)">
             <v-list-tile
@@ -166,6 +166,9 @@
     color: #FFF;
     font-weight: bold;
   }
+  .comments {
+    background-color: #FAFAFA;
+  }
   /*テープ風*/
   .comment {
     position: relative;
@@ -184,7 +187,7 @@
     height: 35px;
     left: 35%;
     top: -16px;
-    background-color: rgba(204, 186, 136,0.3);/*テープ色*/
+    background-color: rgba(204, 186, 136, 0.3);/*テープ色*/
     box-shadow: 0 0 3px rgba(0,0,0,0.1);
     transform: rotate( -3deg ); /*テープ角度*/
   }
