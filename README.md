@@ -5,7 +5,9 @@
 - [add info into firebase.js]
 
 ### firebase deploy
+- docker exec -it [container name] sh
 - npm install -g firebase-tools
+- [add .firebaserc]
 - firebase login --no-localhost
 - npm run-script build
 - firebase deploy
